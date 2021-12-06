@@ -15,7 +15,7 @@
   <body>
     <div class="container my-5">
       <!-- Spinner Loading -->
-      <section class="d-flex align-items-center d-none">
+      <section class="d-flex align-items-center d-none" id="spinner-load">
         <strong>Loading...</strong>
         <div
           class="spinner-border ms-auto"
@@ -24,7 +24,24 @@
         ></div>
       </section>
 
-      <div class="row" id="dinamic-cards"></div>
+      <section class="row" id="dynamic-cards"></section>
     </div>
+
+    <template id="template-card">
+      <!-- Tarjeta -->
+      <article class="col-12 col-md-6 col-lg-3 mb-3">
+        <div class="card text-center shadow">
+          <img
+            src="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+            alt=""
+            class="card-img-top"
+          />
+          <div class="card-body">
+            <h5 class="crad-title text-primary lead">Nombre Personaje</h5>
+            <p class="lead text-secundary">Human</p>
+          </div>
+        </div>
+      </article>
+    </template>
   </body>
 </html>
