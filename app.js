@@ -1,10 +1,10 @@
 //Selects HTML and URL elements.
 const cards = document.getElementById("dynamic-cards");
-const templateCard = document.getElementById("template-card").content;
+const templateCard = document.getElementById("template-cards").content;
 const loading = document.getElementById("spinner-load");
 const pages = document.getElementById("nav-pages");
 const templatePages = document.getElementById("template-pages").content;
-//const api = "https://rickandmortyapi.com/api/character";
+//const url = "https://rickandmortyapi.com/api/character";
 const fragment = new DocumentFragment();
 
 //DOMContentLoaded makes sure the DOM loaded first.
@@ -12,13 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchData();
 });
 
-const fetchData = async () => {
+const fetchData = async (url = "https://rickandmortyapi.com/api/character") => {
   try {
     loadingData(true);
 
-    const res = await fetch(
-      (api = "https://rickandmortyapi.com/api/character")
-    );
+    const res = await fetch(url);
     const data = await res.json();
 
     paintCard(data);
@@ -31,7 +29,7 @@ const fetchData = async () => {
 
 //Function paint pages buttons
 const paintPages = (data) => {
-  console.log(data);
+  //console.log(data);
   pages.textContent = "";
   const clone = templatePages.cloneNode(true);
 
@@ -43,16 +41,15 @@ const paintPages = (data) => {
     ? (clone.querySelector(".btn-outline-primary").disabled = false)
     : (clone.querySelector(".btn-outline-primary").disabled = true);
 
-  pages.addEventListener("click", (e) => {
+  /* pages.addEventListener("click", (e) => {
     if (e.target.matches(".btn-outline-primary")) {
-      console.log("hola");
       if (data.next) return fetchData(data.next);
     }
+
     if (e.target.matches(".btn-outline-secondary")) {
-      console.log("hola2");
       if (data.prev) return fetchData(data.prev);
     }
-  });
+  }); */
 
   pages.append(clone);
 };
